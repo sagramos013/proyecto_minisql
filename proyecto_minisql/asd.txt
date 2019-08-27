@@ -1,0 +1,70 @@
+
+    public static void main(String[] args) throws IOException {
+        String path;
+        Scanner teclado = new Scanner(System.in);
+        
+        
+        System.out.println("ingrese la direccion del archivo");
+        path = teclado.nextLine();
+        
+        //C:/Users/sagra/Documents/NetBeansProjects/AnalizadorLexico/archivo.txt
+        StringBuilder salida = new StringBuilder();
+        try {
+            Reader lector = new BufferedReader(new FileReader(path));
+            Lexer lexema = new Lexer(lector);
+            String resultado = "";
+            System.out.print("a");
+            boolean bandera = true;
+            while (bandera) {
+                //Tokens tokens = lexema.yylex();
+                Tokens tokens = lexema.yylex();
+                if (tokens == null) {
+                    resultado += "FIN";
+                    salida.append(resultado);
+                    bandera = false;
+                }
+                switch (tokens) {
+                    case ERROR:
+                        resultado += "Simbolo no definido\n";
+                        break;
+                    case Identificador:resultado += lexema.lexema + ": Es un " + tokens + "\n";
+                        break;
+                    case entero: resultado += lexema.lexema + ": Es un " + tokens + "\n";
+                        break;
+                    case Reservadas:
+                        resultado += lexema.lexema + ": Es un " + tokens + "\n";
+                        break;
+                    case Operador:
+                        resultado += lexema.lexema + ": Es un " + tokens + "\n";
+                        break;
+                    case booleanas:
+                        resultado += lexema.lexema + ": Es un " + tokens + "\n";
+                        break;    
+                    case decimal:
+                        resultado += lexema.lexema + ": Es un " + tokens + "\n";
+                        break;
+                    case cadena:
+                        resultado += lexema.lexema + ": Es un " + tokens + "\n";
+                        break;
+                    default:
+                        resultado += "Token: " + tokens + "\n";
+                        break;
+                }
+            }
+            
+            File file = new File(path);
+            // Si el archivo no existe es creado
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            FileWriter fw = new FileWriter(file);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(salida.toString());
+            bw.close();
+        } catch (FileNotFoundException ex) {}
+        System.out.print(salida);
+    }
+
+
+
+{L}({L}|{D})({L}|{D})({L}|{D})({L}|{D})({L}|{D})({L}|{D})({L}|{D})({L}|{D})({L}|{D})({L}|{D})({L}|{D})({L}|{D})({L}|{D})({L}|{D})({L}|{D})({L}|{D})({L}|{D})({L}|{D})({L}|{D})({L}|{D})({L}|{D})({L}|{D})({L}|{D})({L}|{D})({L}|{D})({L}|{D})({L}|{D})({L}|{D})({L}|{D})({L}|{D}) {lexema=yytext(); return Identificador;}

@@ -1,0 +1,8 @@
+algo
+int
+while
+WHERE
+SELECT
+23
+--asdf2 jajaja
+asdf1

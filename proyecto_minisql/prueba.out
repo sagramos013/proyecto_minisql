@@ -1,0 +1,8 @@
+algo: Es un Identificador
+int: Es un Identificador
+while: Es un Identificador
+WHERE: Es un Reservadas
+SELECT: Es un Reservadas
+23: Es un entero
+asdf1: Es un Identificador
+FIN
