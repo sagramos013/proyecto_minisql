@@ -27,13 +27,13 @@ import java.util.logging.Logger;
  */
 public class AnalizadorLexico {
     public static void main(String[] args) {
-        File archivo2 = new File("prueba.out");
+        File archivo2 = new File("Diamond.sql.out");
         
         PrintWriter escribir;
         try {
             escribir = new PrintWriter(archivo2);            
         
-            Reader lector = new BufferedReader(new FileReader("prueba.txt"));
+            Reader lector = new BufferedReader(new FileReader("Diamond.sql"));
             Lexer lexer = new Lexer(lector);
             String resultado = "";
             while (true) {
