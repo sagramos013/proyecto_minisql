@@ -1,0 +1,2 @@
+DELETE FROM holamundo  ;  CHAR
+DELETE FROM asdf WHERE;

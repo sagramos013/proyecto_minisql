@@ -13,7 +13,7 @@ import java.io.File;
  */
 public class Principal {
     public static void main(String[] args) {
-        String ruta="C:/Users/sagra/Documents/NetBeansProjects/proyecto_minisql/src/lexicosql/lexico.flex";
+        String ruta="C:/Users/sagra/Documents/GitHub/proyecto_minisql/src/lexicosql/lexico.flex";
         generadorLex(ruta);
     }
     public static void generadorLex(String ruta){

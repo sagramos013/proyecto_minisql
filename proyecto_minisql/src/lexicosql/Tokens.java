@@ -10,12 +10,19 @@ package lexicosql;
  * @author sagra
  */
 public enum Tokens {
-    Reservadas,
-    Operador,
-    booleanas,
-    Identificador,
-    entero,
-    decimal,
-    cadena,
-    ERROR
+    RESERVADA,
+    DECIMAL,
+    EXPONENCIAL,
+    BIT,
+    ENTERO,
+    PUNTUACION,
+    IDENTIFICADOR,
+    STRING,
+    ErrorString,
+    ErrorLinea,
+    ErrorToken,
+    FINCADENA,
+    OPERADOR,
+    OPERADORL,
+    COMPARADOR
 }
