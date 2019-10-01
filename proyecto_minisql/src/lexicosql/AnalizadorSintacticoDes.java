@@ -20,6 +20,77 @@ public class AnalizadorSintacticoDes {
         }
         else if (miLista.get( 0).contains("INSERT")) {//----------------------------------------------------------------------------------INSERT
             int cant=0;
+            miLista.remove(0);//se saca de la lista
+            miToken.remove(0);
+            if (!miLista.isEmpty()) {
+                if (miLista.get( 0).contains("INTO")) {
+                    miLista.remove(0);//se saca de la lista
+                    miToken.remove(0);
+                    if (!miLista.isEmpty()) {
+                        if (miToken.get(0) == Tokens.IDENTIFICADOR ) {
+                            miLista.remove(0);//se saca de la lista
+                            miToken.remove(0);
+                            if (!miLista.isEmpty()) {
+                                if (miLista.get( 0).contains("(")) {
+                                    do {
+                                        miLista.remove(0);//se saca de la lista
+                                        miToken.remove(0);
+                                        if (!miLista.isEmpty()) {
+                                            if (miToken.get(0) == Tokens.IDENTIFICADOR ) {
+                                                miLista.remove(0);//se saca de la lista
+                                                miToken.remove(0);
+                                                cant++;
+                                                if (miLista.isEmpty()) {valor = "Error. se esperaba )"; break;}
+                                            }else{valor="Error. se esperaba IDENTIFICADOR"; break;}
+                                        }else{valor="Error. se esperaba IDENTIFICADOR"; break;}
+                                    } while (miLista.get( 0).contains(","));
+                                    if (!miLista.isEmpty()){
+                                        if (miLista.get( 0).contains(")")) {
+                                            miLista.remove(0);//se saca de la lista
+                                            miToken.remove(0);
+                                            if (!miLista.isEmpty()){
+                                                if (miLista.get( 0).contains("VALUES")) {
+                                                    miLista.remove(0);//se saca de la lista
+                                                    miToken.remove(0);
+                                                    if (!miLista.isEmpty()) {
+                                                        if (miLista.get( 0).contains("(")) {
+                                                            do {
+                                                                miLista.remove(0);//se saca de la lista
+                                                                miToken.remove(0);
+                                                                if (!miLista.isEmpty()) {
+                                                                    if (miToken.get(0) == Tokens.STRING || miToken.get(0) == Tokens.BIT  || miToken.get(0) == Tokens.DECIMAL  || miToken.get(0) == Tokens.ENTERO  || miToken.get(0) == Tokens.EXPONENCIAL  || miToken.get(0) == Tokens.IDENTIFICADOR) {
+                                                                        miLista.remove(0);//se saca de la lista
+                                                                        miToken.remove(0);
+                                                                        cant--;
+                                                                        if (miLista.isEmpty()) {valor = "Error. se esperaba )"; break;}
+                                                                    }else{valor="Error. se esperaba IDENTIFICADOR"; break;}
+                                                                }else{valor="Error. se esperaba IDENTIFICADOR"; break;}
+                                                            } while (miLista.get( 0).contains(","));
+                                                            if (!miLista.isEmpty()){
+                                                                if (miLista.get( 0).contains(")")) {
+                                                                    miLista.remove(0);//se saca de la lista
+                                                                    miToken.remove(0);
+                                                                    if (!miLista.isEmpty()){
+                                                                        if (miToken.get(0) == Tokens.FINCADENA) {//-----CADENA ACEPTADA
+                                                                            miLista.remove(0);//se saca de la lista
+                                                                            miToken.remove(0);
+                                                                            if (cant != 0){valor="Error. se esperaba las columnas no coinsiden con los valores asignados";}
+                                                                        }else{valor="Error. se esperaba ;";}
+                                                                    }else{valor="Error. se esperaba ;";}
+                                                                }else{valor="Error. se esperaba )";}
+                                                            }else{valor="Error. se esperaba )";}
+                                                        }else{valor="Error. se esperaba (";}
+                                                    }else{valor="Error. se esperaba (";}
+                                                }else{valor="Error. se esperaba VALUES";}
+                                            }else{valor="Error. se esperaba VALUES";}
+                                        }else{valor="Error. se esperaba )";}
+                                    }else{valor="Error. se esperaba )";}
+                                }else{valor="Error. se esperaba (";}
+                            }else{valor="Error. se esperaba (";}
+                        }else{valor="Error. se esperaba table_name";}
+                    }else{valor="Error. se esperaba table_name";}
+                }else{valor="Error. se esperaba INTO";}
+            }else{valor="Error. se esperaba INTO";}
         }
         else if (miLista.get( 0).contains("UPDATE")) {//----------------------------------------------------------------------------------UPDATE
             miLista.remove(0);//se saca de la lista
